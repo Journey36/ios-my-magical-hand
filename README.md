@@ -2,7 +2,7 @@
 
 > 사용자가 화면에 그린 그림을 동그라미, 세모, 네모, 별, 네 가지 모양 중 하나로 판별하여 결과와 정확도를 출력해주는 앱
 
-![magichand](/Users/iluxsm/Downloads/magichand.gif)
+![magichand](https://user-images.githubusercontent.com/73573732/118841739-86a60600-b903-11eb-9c2c-55394468c12f.gif)
 
 ## 1. 함께한 사람들
 
