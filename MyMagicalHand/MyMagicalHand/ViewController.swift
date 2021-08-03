@@ -19,12 +19,16 @@ class ViewController: UIViewController {
         let showingResultButton = UIButton(type: .system)
         showingResultButton.setTitle("결과보기", for: .normal)
         showingResultButton.setTitleColor(.systemOrange, for: .normal)
+        showingResultButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        showingResultButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         showingResultButton.addTarget(self, action: #selector(showResult), for: .touchUpInside)
         return showingResultButton
     }()
     private let removalButton: UIButton = {
         let removalButton = UIButton(type: .system)
         removalButton.setTitle("지우기", for: .normal)
+        removalButton.titleLabel?.adjustsFontForContentSizeCategory = true
+        removalButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
         removalButton.setTitleColor(.systemGray2, for: .normal)
         removalButton.addTarget(self, action: #selector(removeDrawing), for: .touchUpInside)
         return removalButton
@@ -33,21 +37,23 @@ class ViewController: UIViewController {
         let labelStackView = UIStackView()
         labelStackView.axis = .vertical
         labelStackView.alignment = .center
-        labelStackView.spacing = 12
+        labelStackView.spacing = 6
         labelStackView.distribution = .equalSpacing
         labelStackView.isHidden = true
         return labelStackView
     }()
     private let returnResultLabel: UILabel = {
         let returnResultLabel = UILabel()
-        returnResultLabel.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        returnResultLabel.adjustsFontForContentSizeCategory = true
+        returnResultLabel.font = UIFont.preferredFont(forTextStyle: .title3)
         returnResultLabel.textColor = .systemGray6
         returnResultLabel.numberOfLines = 0
         return returnResultLabel
     }()
     private let similarProportionLabel: UILabel = {
         let similarProportionLabel = UILabel()
-        similarProportionLabel.font = UIFont.systemFont(ofSize: 17, weight: .regular)
+        similarProportionLabel.adjustsFontForContentSizeCategory = true
+        similarProportionLabel.font = UIFont.preferredFont(forTextStyle: .headline)
         similarProportionLabel.textColor = .systemGray2
         similarProportionLabel.numberOfLines = 0
         return similarProportionLabel
@@ -117,6 +123,8 @@ extension ViewController {
 
             labelStackView.topAnchor.constraint(equalTo: buttonStackView.bottomAnchor, constant: 32),
             labelStackView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor),
+            labelStackView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+            labelStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
             labelStackView.heightAnchor.constraint(greaterThanOrEqualToConstant: -100)
         ])
     }
