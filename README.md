@@ -8,7 +8,7 @@
 
 - 팀원 및 기간: [Bam](https://github.com/hcooch2ch3)과 함께 2021.04.29 ~ 2021.04.30, 총 2주 동안 진행
 - 코드 리뷰어: [daheenallwhite](https://github.com/daheenallwhite)
-- 학습 키워드: `UIVisualEffectView`,  `CoreML`, `CreateML`, `Colaboratory`, `Vision`
+- 학습 키워드: `UIVisualEffectView`,  `CoreML`, `CreateML`, `Colaboratory`, `Vision`, `Accessibility`
 
 ## 2. 앱 상세
 
@@ -28,7 +28,7 @@
 
 <***해당 부분에서 했던 문제 또는 고민점들***>
 
-- CreateML과 Keras를 모두 사용해서 모델을 두 개 만들었는데, 신기하게 파일 용량에서 꽤 차이가 났습니다. 아래 그림에서 볼 수 있듯이 CreateML로 학습한 파일은 50KB로 비교적 작은 반면, Keras로 학습한 파일은 4.8MB로 용량이 비교적 컸습니다.
+- CreateML과 Keras를 모두 사용해서 모델을 두 개 만들었는데, 신기하게 파일 용량에서 꽤 차이가 났습니다. 아래 그림에서 볼 수 있듯이 CreateML로 학습한 파일은 50KB로 비교적 작은 반면, Keras로 학습한 파일은 4.8MB로 용량이 비교적 컸습니다. 왜 이런 차이가 나는 걸까?
 
   ![image](https://user-images.githubusercontent.com/73573732/118828254-104fd680-b8f8-11eb-912b-0eee992fb69b.png)![image](https://user-images.githubusercontent.com/73573732/118828185-ff06ca00-b8f7-11eb-9385-9399b675d4e1.png)
 
@@ -40,7 +40,7 @@
 
 <***해당 부분에서 했던 문제 또는 고민점들***>
 
-- `UIStackView`에서 `addArrangedSubview(_:)`을 사용해야하는 이유에 대해 고민했습니다.
+- `UIStackView`에서 `addArrangedSubview(_:)`을 사용해야하는 이유는 무엇일까?
 
   - `UIStackView`를 사용하여 버튼들을 배치할 때, `addSubview(_:)`를 사용했었는데, 아래 사진 처럼 원하는 대로 배치가 되지 않고 겹쳐서 배치가 되는 것을 확인했습니다.
 
@@ -48,8 +48,9 @@
 
     그 [이유](https://developer.apple.com/documentation/uikit/uistackview/)는 `UIStackView`는 하위 뷰들을 `arrangedSubviews`라는 배열로 관리하기 때문이었습니다. 그리고 해당 배열에 `addArrangedSubview(_:)`메서드를 사용하여 하위 뷰들을 배열 끝에 추가할 수 있습니다. 즉, `addArrangedSubview(_:)`를 호출하는 순서에 따라 `UIStackView` 배열 순서가 달라질 수 있음을 확인할 수 있었습니다.
 
-- 배경 뷰의 색을 회색으로 처리함에 있어서 고민이 있었습니다.
+- 배경 뷰의 색을 회색으로 처리하는 데 어떤 방식으로 구현해야할까?
   - 처음에는 간단하게 `view.backgroundColor`를 회색으로 처리하려고 했습니다. 하지만 사용자가 직관적으로 '캔버스에 그림을 그린다.' 라는 것을 알 수 있도록 구현하는 차원에서는 단순히 배경색으로 처리하는 것보다, Modal 처럼 사용에서 중요한 캔버스를 강조하고, 뒷 배경을 흐리도록 하는 것이 정황상 더 맞는 구현이라고 생각했습니다. 그래서 대신 `UIVisualEffectView`을 사용하여 기본 배경을 흐리게 처리했습니다.
+  - WWDC20의 ***Make your app visually accessible*** 라는 동영상을 시청한 후, UIVisualEffectView가 가지는 이점에 대해서 다시 생각해봤습니다. 처음 구현에는 단순히 멋, 새로운 UI Component라고 생각하고 적용했었습니다. 하지만 흐린 배경으로 처리한 부분이 대비가 확실하지 않기 때문에 일부 사람들에게는 신선하고 독특한 경험보다는 가독성의 문제가 생길 수 있다는 내용을 봤습니다. 만약 `UIVisualEffectView`를 사용하지 않고 그냥 배경을 회색으로 했다면 `투명도 줄이기` 설정을 적용 중인 사용자는 아래 버튼을 읽는 데 어려움이 있었을 것입니다. 
 
 ### 2.3 기능 구현
 
@@ -57,7 +58,7 @@
 
 <***해당 부분에서 했던 문제 또는 고민점들***>
 
-- 이미지 분류에 실패했을 경우에 대한 예외처리를 어떻게 해야할지 고민했습니다.
+- 이미지 분류에 실패했을 경우에 대한 예외처리를 어떻게 해야할까?
 
   - 초기에는 이미지 분류에 실패하는 등의 예외처리를 다음과 같이 `fatalError` 나 `print` 로 확인하도록 구현했습니다.
 
@@ -113,3 +114,39 @@
             }
         }
     ```
+
+
+
+### 2.4 접근성 적용
+
+ 다이나믹 타입을 적용하기 위해서 각 폰트 크기에 맞는 텍스트 스타일로 구현했습니다. 구현 후, Accessibility Inspector를 통해 접근성 검사를 완료했습니다. 왼쪽 이미지는 기본으로 적용되어 있는 `UIContentSizeCategory.large`  사이즈일 때이며, 오른쪽 이미지는 `UIContentSizeCategory.accessibilityExtraExtraExtraLarge` 사이즈 일 때 입니다. 최대 사이즈일 때도 글자가 잘리거나 프레임을 벗어나지 않습니다.
+
+<img width="380" alt="Default" src="https://user-images.githubusercontent.com/73573732/128122877-f60a34e4-6bc8-4b68-9e62-ab809f82190e.png"> <img width="380" alt="DynamicType" src="https://user-images.githubusercontent.com/73573732/128122854-07a2c1a5-a32a-4cf9-83c6-a5911589070b.png">
+
+그리고 왼쪽 이미지 처럼 시스템 색상을 사용해서 `대비 증가` 옵션을 활성화 했을 때, 버튼의 대비가 증가되도록 구현했고, 오른쪽 이미지 처럼 `투명도 줄이기`를 활성화했을 때 Blur처리 되었던 배경의 투명도가 줄어들도록 구현했습니다.
+
+<img width="380" alt="IncreaseContrast" src="https://user-images.githubusercontent.com/73573732/128122874-87d4b1c6-d364-403b-9cdd-2d684240f7f1.png"> <img width="380" alt="ReduceTransparency" src="https://user-images.githubusercontent.com/73573732/128122879-70f9a3d6-db3d-4563-853b-a30a70791139.png">
+
+<***해당 부분에서 했던 문제 또는 고민점들***>
+
+-   기존에 다이나믹 타입을 적용하는 부분을 조금 더 편리하게 사용할 수 없을까?
+
+    -   기존에는 모든 레이블과 버튼에 `adjustsFontForContentSizeCategory` 값과 `preferredFont(forTextStyle:)` 메서드를 각각 사용해줬습니다. 하지만 조금 더 편하게 사용할 수 있는 방법이 없을까 고민하다가 `extension`을 통해 메서드를 생성하면 될 거라고 생각했습니다.
+
+        ```swift
+        extension UIButton {
+            func setDynamicType(style: UIFont.TextStyle) {
+                titleLabel?.adjustsFontForContentSizeCategory = true
+                titleLabel?.font = UIFont.preferredFont(forTextStyle: style)
+            }
+        }
+        
+        extension UILabel {
+            func setDynamicType(style: UIFont.TextStyle) {
+        		adjustsFontForContentSizeCategory = true
+                font = UIFont.preferredFont(forTextStyle: style)
+            }
+        }
+        ```
+
+        
