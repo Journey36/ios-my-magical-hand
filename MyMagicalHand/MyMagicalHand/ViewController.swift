@@ -19,16 +19,14 @@ class ViewController: UIViewController {
         let showingResultButton = UIButton(type: .system)
         showingResultButton.setTitle("결과보기", for: .normal)
         showingResultButton.setTitleColor(.systemOrange, for: .normal)
-        showingResultButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        showingResultButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        showingResultButton.setDynamicType(style: .body)
         showingResultButton.addTarget(self, action: #selector(showResult), for: .touchUpInside)
         return showingResultButton
     }()
     private let removalButton: UIButton = {
         let removalButton = UIButton(type: .system)
         removalButton.setTitle("지우기", for: .normal)
-        removalButton.titleLabel?.adjustsFontForContentSizeCategory = true
-        removalButton.titleLabel?.font = UIFont.preferredFont(forTextStyle: .body)
+        removalButton.setDynamicType(style: .body)
         removalButton.setTitleColor(.systemGray2, for: .normal)
         removalButton.addTarget(self, action: #selector(removeDrawing), for: .touchUpInside)
         return removalButton
@@ -44,16 +42,14 @@ class ViewController: UIViewController {
     }()
     private let returnResultLabel: UILabel = {
         let returnResultLabel = UILabel()
-        returnResultLabel.adjustsFontForContentSizeCategory = true
-        returnResultLabel.font = UIFont.preferredFont(forTextStyle: .title3)
+        returnResultLabel.setDynamicType(style: .title3)
         returnResultLabel.textColor = .systemGray6
         returnResultLabel.numberOfLines = 0
         return returnResultLabel
     }()
     private let similarProportionLabel: UILabel = {
         let similarProportionLabel = UILabel()
-        similarProportionLabel.adjustsFontForContentSizeCategory = true
-        similarProportionLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        similarProportionLabel.setDynamicType(style: .headline)
         similarProportionLabel.textColor = .systemGray2
         similarProportionLabel.numberOfLines = 0
         return similarProportionLabel
