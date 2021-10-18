@@ -151,6 +151,10 @@
 
 
 
+<br/>
+
+
+
 ### 접근성 적용
 
  다이나믹 타입을 적용하기 위해서 각 폰트 크기에 맞는 텍스트 스타일로 구현했습니다. 구현 후, Accessibility Inspector를 통해 접근성 검사를 완료했습니다. 왼쪽 이미지는 기본으로 적용되어 있는 `UIContentSizeCategory.large`  사이즈일 때이며, 오른쪽 이미지는 `UIContentSizeCategory.accessibilityExtraExtraExtraLarge` 사이즈 일 때 입니다. 최대 사이즈일 때도 글자가 잘리거나 프레임을 벗어나지 않습니다.
