@@ -2,13 +2,41 @@
 
 > 사용자가 화면에 그린 그림을 동그라미, 세모, 네모, 별, 네 가지 모양 중 하나로 판별하여 결과와 정확도를 출력해주는 앱
 
-![magichand](https://user-images.githubusercontent.com/73573732/118841739-86a60600-b903-11eb-9c2c-55394468c12f.gif)
+<img align="center" width="390" height="844" src="https://user-images.githubusercontent.com/73573732/118841739-86a60600-b903-11eb-9c2c-55394468c12f.gif">
+
+<br/>
+
+
+
+# 목차
+
+[1. 함께한 사람들](#1. 함께한 사람들)
+
+[2. 앱 상세](#2. 앱 상세)
+
+[3. 앱 구현 과정 및 트러블 슈팅](#3. 앱 구현 과정 및 트러블 슈팅)
+
+​	[3.1 CoreML 모델 학습](#3.1 CoreML 모델 학습)
+
+​	[3.2 UI 구현](#3.2 UI 구현)
+
+​	[3.3 기능 구현](#3.3 기능 구현)
+
+​	[3.4 접근성 적용](#3.4 접근성 적용)
+
+---
+
+<br/>
 
 ## 1. 함께한 사람들
 
 - 팀원 및 기간: [Bam](https://github.com/hcooch2ch3)과 함께 2021.04.29 ~ 2021.04.30, 총 2주 동안 진행
 - 코드 리뷰어: [daheenallwhite](https://github.com/daheenallwhite)
 - 학습 키워드: `UIVisualEffectView`,  `CoreML`, `CreateML`, `Colaboratory`, `Vision`, `Accessibility`
+
+<br/>
+
+
 
 ## 2. 앱 상세
 
@@ -19,6 +47,10 @@
 3. 캔버스를 초기화하고 다시 4번, 5번 레이블을 숨기는 기능을 하는 버튼입니다.
 4. 사용자 입력을 바탕으로 수행한 도형 분류 결과 값을 나타내는 레이블입니다.
 5. 사용자 입력을 바탕으로 수행한 도형 분류의 정확도를 나타내는 레이블입니다.
+
+<br/>
+
+
 
 ## 3. 앱 구현 과정 및 트러블 슈팅
 
@@ -63,7 +95,7 @@
   - 초기에는 이미지 분류에 실패하는 등의 예외처리를 다음과 같이 `fatalError` 나 `print` 로 확인하도록 구현했습니다.
 
     ```swift
-      private func updateClassifications(for image: UIImage) {
+    private func updateClassifications(for image: UIImage) {
             ...
             guard let ciImage = CIImage(image: image) else {
                 fatalError("Unable to create \(CIImage.self) from \(image).")
@@ -106,7 +138,7 @@
     그리고 최종적으로, `dispatchWork` 메서드를 이용하여 3회 시도 후 `UILabel`에 에러 메시지를 표시하도록 아래와 같이 코드를 수정하였습니다. `updateClassifications` 메서드는 이미지 분류 결과를 갱신하는 메서드이며, `결과보기` 버튼을 누르면 호출됩니다.
 
     ```swift
-      private func updateClassifications() {
+    private func updateClassifications() {
             ...
             DispatchQueue.global(qos: .userInitiated).async {
                 let handler = VNImageRequestHandler(ciImage: ciImage, orientation: orientation)
