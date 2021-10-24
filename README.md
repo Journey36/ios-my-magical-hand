@@ -10,7 +10,7 @@
 
 # 목차
 
--   [함께한 사람들](#함께한-사람들)
+-   [프로젝트 정보](#프로젝트-정보)
 -   [앱 상세](#앱-상세)
 -   [앱 구현 과정 및 트러블 슈팅](#앱-구현-과정-및-트러블-슈팅)
     -   [CoreML 모델 학습](#CoreML-모델-학습)
@@ -26,7 +26,7 @@
 
 
 
-## 함께한 사람들
+## 프로젝트 정보
 
 - 코드 리뷰어: [daheenallwhite](https://github.com/daheenallwhite)
 - 학습 키워드: `UIVisualEffectView`,  `CoreML`, `CreateML`, `Colaboratory`, `Vision`, `Accessibility`
@@ -44,6 +44,8 @@
 3. 캔버스를 초기화하고 다시 4번, 5번 레이블을 숨기는 기능을 하는 버튼입니다.
 4. 사용자 입력을 바탕으로 수행한 도형 분류 결과 값을 나타내는 레이블입니다.
 5. 사용자 입력을 바탕으로 수행한 도형 분류의 정확도를 나타내는 레이블입니다.
+
+[👆 목차로 돌아가기](#목차)
 
 <br/>
 
@@ -66,6 +68,8 @@ CreateML과 Keras를 통한 모델의 학습을 진행했습니다. 전자의 �
 ![image](https://user-images.githubusercontent.com/73573732/118828254-104fd680-b8f8-11eb-912b-0eee992fb69b.png)![image](https://user-images.githubusercontent.com/73573732/118828185-ff06ca00-b8f7-11eb-9385-9399b675d4e1.png)
 
 iOS 11 부터 CoreML이, iOS 12 부터 CoreML2와 CreateML이 함께 출시되었습니다. Keras는 CoreML을 기반으로, CreateML은 CoreML2를 기반으로 동작합니다. CoreML은 가중치 값이 `Float32` 로 저장되어있지만, CoreML2는 가중치 값을 양자화를 통해 1~8 bit 까지 줄일 수 있기 때문에 용량에서 차이가 난다고 합니다. 참고로 Keras에서도 양자화 코드를 따로 입력하면 용량을 줄일 수 있다고 합니다.
+
+[👆 목차로 돌아가기](#목차)
 
 <br/>
 
@@ -94,6 +98,8 @@ iOS 11 부터 CoreML이, iOS 12 부터 CoreML2와 CreateML이 함께 출시되�
 처음에는 간단하게 `view.backgroundColor`를 회색으로 처리하려고 했습니다. 하지만 사용자가 직관적으로 '캔버스에 그림을 그린다.' 라는 것을 알 수 있도록 구현하는 차원에서는 단순히 배경색으로 처리하는 것보다, Modal 처럼 사용에서 중요한 캔버스를 강조하고, 뒷 배경을 흐리도록 하는 것이 정황상 더 맞는 구현이라고 생각했습니다. 그래서 대신 `UIVisualEffectView`을 사용하여 기본 배경을 흐리게 처리했습니다.
 
 ♻️ WWDC20의 ***Make your app visually accessible*** 영상을 시청한 후, `UIVisualEffectView`가 가지는 이점에 대해서 다시 생각해봤습니다. 처음 구현에는 단순히 새로운 UI Component를 학습하고 하는 생각에 적용했었습니다. 하지만 흐린 배경으로 처리한 부분이 대비가 확실하지 않기 때문에 일부 사람들에게는 신선하고 독특한 경험보다는 가독성의 문제가 생길 수 있다는 내용을 봤습니다. 만약 `UIVisualEffectView`를 사용하지 않고 배경을 일반 색상으로만 구현했다면 `투명도 줄이기` 설정을 적용 중인 사용자는 아래 버튼을 읽는 데 어려움이 있었을 것입니다. 
+
+[👆 목차로 돌아가기](#목차)
 
 <br/>
 
@@ -164,6 +170,8 @@ private func updateClassifications() {
     }
 ```
 
+[👆 목차로 돌아가기](#목차)
+
 <br/>
 
 
@@ -202,3 +210,4 @@ extension UILabel {
 }
 ```
 
+[👆 목차로 돌아가기](#목차)
