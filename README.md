@@ -57,6 +57,10 @@
 
 CreateML과 Keras를 통한 모델의 학습을 진행했습니다. 전자의 경우 Xcode에 포함된 CreateML 툴을 사용해서 진행했고, 후자의 경우 Google의 Colab을 통해 진행했습니다. 그리고 정확도가 조금 더 높은 모델을 최종으로 선정했습니다.
 
+<br/>
+
+
+
 #### 해당 부분에서 했던 고민점들
 
 |                             고민                             |
@@ -79,6 +83,10 @@ iOS 11 부터 CoreML이, iOS 12 부터 CoreML2와 CreateML이 함께 출시되�
 
 스토리보드로 작업 후 Merge 시에 발생하는 충돌 및 각종 스토리보드 버그를 피하기 위해 코드로 UI를 구현했습니다. 그리고 배경보다 캔버스에 집중되는 효과를 위해 단순히 배경에 색상을 주는 것이 아닌, `UIVisualEffectView` 를 사용하여 구현했습니다.
 
+<br/>
+
+
+
 #### 해당 부분에서 했던 고민점들
 
 |                             문제                             |
@@ -90,6 +98,10 @@ iOS 11 부터 CoreML이, iOS 12 부터 CoreML2와 CreateML이 함께 출시되�
 <img width="360" alt="스크린샷 2021-05-19 오후 11 18 32" src="https://user-images.githubusercontent.com/73573732/118830038-9a4c6f00-b8f9-11eb-90f5-060f3df6befa.png">
 
 그 [이유](https://developer.apple.com/documentation/uikit/uistackview/)는 `UIStackView`는 하위 뷰들을 `arrangedSubviews`라는 배열로 관리하기 때문이었습니다. 그리고 해당 배열에 `addArrangedSubview(_:)`메서드를 사용하여 하위 뷰들을 배열 끝에 추가할 수 있습니다. 즉, `addArrangedSubview(_:)`를 호출하는 순서에 따라 `UIStackView` 배열 순서가 달라질 수 있음을 확인할 수 있었습니다.
+
+<br/>
+
+
 
 |                             고민                             |
 | :----------------------------------------------------------: |
@@ -108,6 +120,10 @@ iOS 11 부터 CoreML이, iOS 12 부터 CoreML2와 CreateML이 함께 출시되�
 ### 기능 구현
 
 캔버스에 그림을 그릴 수 있고,  해당 이미지를 학습 모델과 비교하기 위해 이미지를 추출하도록 구현했습니다. 학습용 데이터와 이미지가 최대한 유사하도록 선 굵기 및 선 끝처리 등도 추가했습니다. 그리고 '결과보기' 버튼을 누르면 추출된 이미지를 학습 데이터를 기반으로 분류 정확도가 얼마고 어떤 도형인지 예측하도록 했습니다.
+
+<br/>
+
+
 
 #### 해당 부분에서 했던 고민점들
 
@@ -185,6 +201,10 @@ private func updateClassifications() {
 그리고 왼쪽 이미지 처럼 시스템 색상을 사용해서 `대비 증가` 옵션을 활성화 했을 때, 버튼의 대비가 증가되도록 구현했고, 오른쪽 이미지 처럼 `투명도 줄이기`를 활성화했을 때 블러처리 되었던 배경의 투명도가 줄어들도록 구현했습니다.
 
 <img width="380" alt="IncreaseContrast" src="https://user-images.githubusercontent.com/73573732/128122874-87d4b1c6-d364-403b-9cdd-2d684240f7f1.png"> <img width="380" alt="ReduceTransparency" src="https://user-images.githubusercontent.com/73573732/128122879-70f9a3d6-db3d-4563-853b-a30a70791139.png">
+
+<br/>
+
+
 
 #### 해당 부분에서 했던 고민점들
 
